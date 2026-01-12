@@ -1,6 +1,6 @@
 // Cart types
 
-import type { Product, ProductSize } from './menu';
+import type { Product, ProductSize } from "./menu";
 
 export interface CartItem {
   id: string; // Unique cart item ID
@@ -27,5 +27,3 @@ export interface CartSummary {
   total: number;
   itemCount: number;
 }
-
-

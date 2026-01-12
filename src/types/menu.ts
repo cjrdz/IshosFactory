@@ -1,6 +1,6 @@
 // Menu and Product types
 
-export type Category = 'gelatos' | 'sorbetes' | 'especiales' | 'extras';
+export type Category = "gelatos" | "sorbetes" | "especiales" | "extras";
 
 export interface Product {
   id: string;
@@ -42,5 +42,3 @@ export interface CategoryData {
   icon?: string;
   products: Product[];
 }
-
-

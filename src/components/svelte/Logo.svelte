@@ -8,10 +8,13 @@
         if (savedTheme) {
             theme = savedTheme;
         } else {
-            const dataTheme = document.documentElement.getAttribute("data-theme");
+            const dataTheme =
+                document.documentElement.getAttribute("data-theme");
             if (dataTheme) {
                 theme = dataTheme;
-            } else if (window.matchMedia("(prefers-color-scheme: night)").matches) {
+            } else if (
+                window.matchMedia("(prefers-color-scheme: night)").matches
+            ) {
                 theme = "night";
             }
         }
@@ -19,18 +22,18 @@
 
     onMount(() => {
         updateTheme();
-        
+
         // Listen to storage changes (when theme is toggled)
         window.addEventListener("storage", updateTheme);
-        
+
         // Also listen to custom storage event (for same-window updates)
         window.addEventListener("themechange", updateTheme);
-        
+
         // Watch for data-theme attribute changes
         const observer = new MutationObserver(updateTheme);
         observer.observe(document.documentElement, {
             attributes: true,
-            attributeFilter: ["data-theme"]
+            attributeFilter: ["data-theme"],
         });
 
         return () => {

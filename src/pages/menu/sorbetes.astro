@@ -1,24 +1,28 @@
 ---
-import MenuLayout from '../../layouts/MenuLayout.astro';
-import ProductGrid from '../../components/astro/ProductGrid.astro';
-import CategoryTabs from '../../components/astro/CategoryTabs.astro';
-import type { Product } from '../../types/menu';
-import configData from '../../content/config.json';
-import sorbetesData from '../../data/menu/sorbetes.json';
+import MenuLayout from "../../layouts/MenuLayout.astro";
+import ProductGrid from "../../components/astro/ProductGrid.astro";
+import CategoryTabs from "../../components/astro/CategoryTabs.astro";
+import type { Product } from "../../types/menu";
+import configData from "../../content/config.json";
+import sorbetesData from "../../data/menu/sorbetes.json";
 
-const products: Product[] = sorbetesData.filter((p) => p.available);
+const products: Product[] = sorbetesData.filter(
+    (p) => p.available,
+) as Product[];
 ---
 
 <MenuLayout title={`Sorbetes - ${configData.storeName}`}>
-  <div class="mb-8">
-    <h1 class="text-4xl font-bold mb-4">Sorbetes</h1>
-    <p class="text-lg text-base-content/70">
-      Sorbetes refrescantes y naturales
-    </p>
-  </div>
+    <div class="mb-8">
+        <h1 class="text-4xl font-bold mb-4">Sorbetes</h1>
+        <p class="text-lg text-base-content/70">
+            Sorbetes refrescantes y naturales
+        </p>
+    </div>
 
-  <CategoryTabs currentCategory="sorbetes" />
+    <CategoryTabs currentCategory="sorbetes" />
 
-  <ProductGrid products={products} currencySymbol={configData.currencySymbol} />
+    <ProductGrid
+        products={products}
+        currencySymbol={configData.currencySymbol}
+    />
 </MenuLayout>
-

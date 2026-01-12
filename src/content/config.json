@@ -5,9 +5,8 @@
   "currencySymbol": "$",
   "whatsappNumber": "50312345678",
   "whatsappMessage": "Hola! Me gustaría hacer un pedido:",
-  "taxRate": 0.13,
-  "minOrderAmount": 5.00,
+  "taxRate": 0.0,
+  "minOrderAmount": 5.0,
   "deliveryAvailable": true,
   "pickupAvailable": true
 }
-

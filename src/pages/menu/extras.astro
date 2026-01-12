@@ -1,24 +1,26 @@
 ---
-import MenuLayout from '../../layouts/MenuLayout.astro';
-import ProductGrid from '../../components/astro/ProductGrid.astro';
-import CategoryTabs from '../../components/astro/CategoryTabs.astro';
-import type { Product } from '../../types/menu';
-import configData from '../../content/config.json';
-import extrasData from '../../data/menu/extras.json';
+import MenuLayout from "../../layouts/MenuLayout.astro";
+import ProductGrid from "../../components/astro/ProductGrid.astro";
+import CategoryTabs from "../../components/astro/CategoryTabs.astro";
+import type { Product } from "../../types/menu";
+import configData from "../../content/config.json";
+import extrasData from "../../data/menu/extras.json";
 
-const products: Product[] = extrasData.filter((p) => p.available);
+const products: Product[] = extrasData.filter((p) => p.available) as Product[];
 ---
 
 <MenuLayout title={`Extras - ${configData.storeName}`}>
-  <div class="mb-8">
-    <h1 class="text-4xl font-bold mb-4">Extras</h1>
-    <p class="text-lg text-base-content/70">
-      Complementos y accesorios para tu helado
-    </p>
-  </div>
+    <div class="mb-8">
+        <h1 class="text-4xl font-bold mb-4">Extras</h1>
+        <p class="text-lg text-base-content/70">
+            Complementos y accesorios para tu helado
+        </p>
+    </div>
 
-  <CategoryTabs currentCategory="extras" />
+    <CategoryTabs currentCategory="extras" />
 
-  <ProductGrid products={products} currencySymbol={configData.currencySymbol} />
+    <ProductGrid
+        products={products}
+        currencySymbol={configData.currencySymbol}
+    />
 </MenuLayout>
-

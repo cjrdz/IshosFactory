@@ -1,6 +1,6 @@
 // Order types
 
-import type { CartItem } from './cart';
+import type { CartItem } from "./cart";
 
 export interface Customer {
   name: string;
@@ -10,7 +10,7 @@ export interface Customer {
   deliveryNotes?: string;
 }
 
-export type OrderType = 'pickup' | 'delivery';
+export type OrderType = "pickup" | "delivery";
 
 export interface Order {
   id: string;
@@ -20,7 +20,13 @@ export interface Order {
   subtotal: number;
   tax: number;
   total: number;
-  status: 'pending' | 'confirmed' | 'preparing' | 'ready' | 'completed' | 'cancelled';
+  status:
+    | "pending"
+    | "confirmed"
+    | "preparing"
+    | "ready"
+    | "completed"
+    | "cancelled";
   createdAt: number;
   notes?: string;
 }
@@ -34,5 +40,3 @@ export interface OrderFormData {
   deliveryNotes?: string;
   notes?: string;
 }
-
-

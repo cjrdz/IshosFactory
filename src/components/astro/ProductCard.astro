@@ -1,37 +1,41 @@
 ---
-import type { Product } from '../../types/menu';
-import { formatPrice } from '../../lib/utils/formatters';
+import type { Product } from "../../types/menu";
+import { formatPrice } from "../../lib/utils/formatters";
 
 interface Props {
-  product: Product;
-  currencySymbol?: string;
+    product: Product;
+    currencySymbol?: string;
 }
 
-const { product, currencySymbol = '$' } = Astro.props;
+const { product, currencySymbol = "$" } = Astro.props;
 ---
 
-<a href={`/menu/producto/${product.id}`} class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col cursor-pointer">
-  <figure class="overflow-hidden">
-    <img
-      src={product.image}
-      alt={product.name}
-      class="w-full h-32 sm:h-40 md:h-48 object-contain bg-base-200"
-      loading="lazy"
-    />
-  </figure>
-  <div class="card-body flex-grow">
-    <h2 class="card-title">{product.name}</h2>
-    <p class="text-sm text-base-content/70 flex-grow">{product.description}</p>
-    <div class="card-actions justify-between items-center mt-4">
-      <span class="text-2xl font-bold text-primary">
-        {formatPrice(product.price, 'USD', currencySymbol)}
-      </span>
-      {product.available ? (
-        <div class="badge badge-success">Disponible</div>
-      ) : (
-        <div class="badge badge-error">Agotado</div>
-      )}
+<a
+    href={`/menu/producto/${product.id}`}
+    class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col cursor-pointer"
+>
+    <figure class="overflow-hidden">
+        <img
+            src={product.image}
+            alt={product.name}
+            class="w-full h-32 sm:h-40 md:h-48 object-contain bg-base-200"
+            loading="lazy"
+        />
+    </figure>
+    <div class="card-body grow">
+        <h2 class="card-title">{product.name}</h2>
+        <p class="text-sm text-base-content/70 grow">{product.description}</p>
+        <div class="card-actions justify-between items-center mt-4">
+            <span class="text-2xl font-bold text-primary">
+                {formatPrice(product.price, "USD", currencySymbol)}
+            </span>
+            {
+                product.available ? (
+                    <div class="badge badge-success">Disponible</div>
+                ) : (
+                    <div class="badge badge-error">Agotado</div>
+                )
+            }
+        </div>
     </div>
-  </div>
 </a>
-

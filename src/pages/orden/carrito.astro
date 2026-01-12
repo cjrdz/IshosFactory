@@ -1,20 +1,20 @@
 ---
-import OrderLayout from '../../layouts/OrderLayout.astro';
-import CartPage from '../../components/svelte/CartPage.svelte';
-import Toast from '../../components/svelte/Toast.svelte';
-import configData from '../../content/config.json';
+import OrderLayout from "../../layouts/OrderLayout.astro";
+import CartPage from "../../components/svelte/CartPage.svelte";
+import Toast from "../../components/svelte/Toast.svelte";
+import configData from "../../content/config.json";
 ---
 
 <OrderLayout title={`Carrito - ${configData.storeName}`}>
-  <div class="mb-8">
-    <h1 class="text-4xl font-bold mb-4">Mi Carrito</h1>
-  </div>
+    <div class="mb-8">
+        <h1 class="text-4xl font-bold mb-4">Mi Carrito</h1>
+    </div>
 
-  <CartPage
-    currencySymbol={configData.currencySymbol}
-    taxRate={configData.taxRate}
-    client:load
-  />
+    <CartPage
+        currencySymbol={configData.currencySymbol}
+        taxRate={configData.taxRate}
+        client:load
+    />
 
-  <Toast client:load />
+    <Toast client:load />
 </OrderLayout>
