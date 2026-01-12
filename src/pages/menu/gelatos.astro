@@ -4,12 +4,12 @@ import ProductGrid from "../../components/astro/ProductGrid.astro";
 import CategoryTabs from "../../components/astro/CategoryTabs.astro";
 import type { Product } from "../../types/menu";
 import configData from "../../content/config.json";
-import gelatosData from "../../data/menu/gelatos.json";
+import gelatosData from "../../content/menu/gelatos.json";
 
 const products: Product[] = gelatosData.filter((p) => p.available) as Product[];
 ---
 
-<MenuLayout title={`Gelatos - ${configData.storeName}`}>
+<MenuLayout title={`Gelatos - ${configData.store.name}`}>
     <div class="mb-8">
         <h1 class="text-4xl font-bold mb-4">Gelatos</h1>
         <p class="text-lg text-base-content/70">
@@ -21,6 +21,6 @@ const products: Product[] = gelatosData.filter((p) => p.available) as Product[];
 
     <ProductGrid
         products={products}
-        currencySymbol={configData.currencySymbol}
+        currencySymbol={configData.settings.currencySymbol}
     />
 </MenuLayout>

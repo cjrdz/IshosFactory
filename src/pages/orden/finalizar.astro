@@ -20,7 +20,7 @@ function handleSubmit(data: OrderFormData) {
 }
 ---
 
-<OrderLayout title={`Finalizar Pedido - ${configData.storeName}`}>
+<OrderLayout title={`Finalizar Pedido - ${configData.store.name}`}>
     <div class="mb-8">
         <h1 class="text-4xl font-bold mb-4">Finalizar Pedido</h1>
     </div>
@@ -31,15 +31,15 @@ function handleSubmit(data: OrderFormData) {
                 <h2 class="text-2xl font-bold mb-4">Información del Pedido</h2>
                 <OrderForm
                     onSubmit={handleSubmit}
-                    currencySymbol={configData.currencySymbol}
+                    currencySymbol={configData.settings.currencySymbol}
                     client:load
                 />
             </div>
         </div>
         <div class="lg:col-span-1">
             <OrderSummaryCard
-                currencySymbol={configData.currencySymbol}
-                taxRate={configData.taxRate}
+                currencySymbol={configData.settings.currencySymbol}
+                taxRate={configData.settings.taxRate}
                 showTax={false}
                 client:load
             />

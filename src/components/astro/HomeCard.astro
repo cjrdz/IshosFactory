@@ -2,7 +2,7 @@
 import Icon from "../svelte/Icon.svelte";
 import configData from "../../content/config.json";
 
-const whatsappNumber = configData.whatsappNumber || "50312345678";
+const whatsappNumber = configData.store.contact.whatsappNumber || "50312345678";
 const phoneNumber = whatsappNumber.replace(/\D/g, '').startsWith('503') 
     ? whatsappNumber.replace(/\D/g, '') 
     : `503${whatsappNumber.replace(/\D/g, '')}`;

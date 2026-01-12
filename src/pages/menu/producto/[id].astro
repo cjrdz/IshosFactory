@@ -7,10 +7,10 @@ import type { Product } from "../../../types/menu";
 import configData from "../../../content/config.json";
 
 // Import all product data
-import gelatosData from "../../../data/menu/gelatos.json";
-import sorbetesData from "../../../data/menu/sorbetes.json";
-import especialesData from "../../../data/menu/especiales.json";
-import extrasData from "../../../data/menu/extras.json";
+import gelatosData from "../../../content/menu/gelatos.json";
+import sorbetesData from "../../../content/menu/sorbetes.json";
+import especialesData from "../../../content/menu/especiales.json";
+import extrasData from "../../../content/menu/extras.json";
 
 // Generate static paths for all products
 export async function getStaticPaths() {
@@ -44,7 +44,7 @@ if (!product) {
 const category = product.category;
 ---
 
-<MenuLayout title={`${product.name} - ${configData.storeName}`}>
+<MenuLayout title={`${product.name} - ${configData.store.name}`}>
     <div class="mb-8">
         <a href="/menu" class="btn btn-ghost btn-sm mb-4"> ← Volver al Menú </a>
         <CategoryTabs currentCategory={category} />
@@ -52,7 +52,7 @@ const category = product.category;
 
     <ProductDetail
         product={product}
-        currencySymbol={configData.currencySymbol}
+        currencySymbol={configData.settings.currencySymbol}
         client:load
     />
 

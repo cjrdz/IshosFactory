@@ -5,8 +5,8 @@ import type { Product } from "../types/menu";
 import configData from "../content/config.json";
 
 // Get featured products
-import gelatosData from "../data/menu/gelatos.json";
-import sorbetesData from "../data/menu/sorbetes.json";
+import gelatosData from "../content/menu/gelatos.json";
+import sorbetesData from "../content/menu/sorbetes.json";
 
 const featuredProducts: Product[] = [
     ...(gelatosData as Product[]),
@@ -16,7 +16,7 @@ const featuredProducts: Product[] = [
     .slice(0, 6);
 ---
 
-<Layout title={`${configData.storeName} - El Salvador`}>
+<Layout title={`${configData.store.name} - El Salvador`}>
     {
         featuredProducts.length > 0 && (
             <section class="container mx-auto px-4 py-6">
@@ -25,7 +25,7 @@ const featuredProducts: Product[] = [
                 </h2>
                 <ProductGrid
                     products={featuredProducts}
-                    currencySymbol={configData.currencySymbol}
+                    currencySymbol={configData.settings.currencySymbol}
                 />
                 <div class="text-center mt-8">
                     <a href="/menu" class="btn btn-primary btn-lg">

@@ -1,0 +1,48 @@
+{
+  "collections": {
+    "menu": {
+      "path": "src/content/menu",
+      "label": "Menú de Productos",
+      "files": [
+        {
+          "file": "gelatos.json",
+          "label": "Gelatos",
+          "type": "array"
+        },
+        {
+          "file": "sorbetes.json",
+          "label": "Sorbetes",
+          "type": "array"
+        },
+        {
+          "file": "especiales.json",
+          "label": "Especiales",
+          "type": "array"
+        },
+        {
+          "file": "extras.json",
+          "label": "Extras",
+          "type": "array"
+        }
+      ]
+    },
+    "settings": {
+      "path": "src/content",
+      "label": "Configuración",
+      "files": [
+        {
+          "file": "config.json",
+          "label": "Configuración General",
+          "type": "object"
+        }
+      ]
+    }
+  },
+  "media": {
+    "path": "public/images",
+    "upload": {
+      "products": "public/images/products",
+      "maxSize": 5242880
+    }
+  }
+}

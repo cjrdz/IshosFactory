@@ -1,12 +1,49 @@
 {
-  "storeName": "Isho's Gelatos & Sorbetes",
-  "storeDescription": "Helados artesanales hechos con amor en El Salvador",
-  "currency": "USD",
-  "currencySymbol": "$",
-  "whatsappNumber": "50312345678",
-  "whatsappMessage": "Hola! Me gustaría hacer un pedido:",
-  "taxRate": 0.0,
-  "minOrderAmount": 5.0,
-  "deliveryAvailable": true,
-  "pickupAvailable": true
+  "store": {
+    "name": "Isho's Gelatos & Sorbetes",
+    "tagline": "Helados artesanales hechos con amor en El Salvador",
+    "logo": "/images/whiteicon.png",
+    "contact": {
+      "whatsappNumber": "50312345678",
+      "whatsappCountryCode": "+503",
+      "whatsappMessage": "Hola! Me gustaría hacer un pedido:",
+      "email": "info@ishos.com",
+      "phone": "(503) 1234-5678"
+    },
+    "address": {
+      "street": "",
+      "city": "El Salvador",
+      "state": "",
+      "zip": ""
+    },
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "tiktok": ""
+    }
+  },
+  "businessHours": {
+    "monday": { "open": "10:00", "close": "20:00", "closed": false },
+    "tuesday": { "open": "10:00", "close": "20:00", "closed": false },
+    "wednesday": { "open": "10:00", "close": "20:00", "closed": false },
+    "thursday": { "open": "10:00", "close": "20:00", "closed": false },
+    "friday": { "open": "10:00", "close": "22:00", "closed": false },
+    "saturday": { "open": "11:00", "close": "22:00", "closed": false },
+    "sunday": { "open": "11:00", "close": "20:00", "closed": false }
+  },
+  "settings": {
+    "currency": "USD",
+    "currencySymbol": "$",
+    "taxRate": 0.0,
+    "enableOrdering": true,
+    "minOrderAmount": 5.0,
+    "deliveryAvailable": true,
+    "pickupAvailable": true
+  },
+  "messages": {
+    "welcomeMessage": "¡Bienvenidos a Isho's!",
+    "orderGreeting": "¡Hola Isho's! 🍦",
+    "closedMessage": "Lo sentimos, estamos cerrados en este momento",
+    "orderSuccessMessage": "¡Tu pedido ha sido enviado!"
+  }
 }

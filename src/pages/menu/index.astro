@@ -7,10 +7,10 @@ import configData from "../../content/config.json";
 
 // In a real app, you'd fetch from content collections
 // For now, we'll combine all menu items
-import gelatosData from "../../data/menu/gelatos.json";
-import sorbetesData from "../../data/menu/sorbetes.json";
-import especialesData from "../../data/menu/especiales.json";
-import extrasData from "../../data/menu/extras.json";
+import gelatosData from "../../content/menu/gelatos.json";
+import sorbetesData from "../../content/menu/sorbetes.json";
+import especialesData from "../../content/menu/especiales.json";
+import extrasData from "../../content/menu/extras.json";
 
 const allProducts: Product[] = [
     ...gelatosData,
@@ -20,11 +20,11 @@ const allProducts: Product[] = [
 ].filter((p) => p.available) as Product[];
 ---
 
-<MenuLayout title={`Menú - ${configData.storeName}`}>
+<MenuLayout title={`Menú - ${configData.store.name}`}>
     <div class="mb-8">
         <h1 class="text-4xl font-bold mb-4">Nuestro Menú</h1>
         <p class="text-lg text-base-content/70">
-            {configData.storeDescription}
+            {configData.store.tagline}
         </p>
     </div>
 
@@ -32,6 +32,6 @@ const allProducts: Product[] = [
 
     <ProductGrid
         products={allProducts}
-        currencySymbol={configData.currencySymbol}
+        currencySymbol={configData.settings.currencySymbol}
     />
 </MenuLayout>
