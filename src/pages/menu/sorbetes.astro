@@ -2,13 +2,10 @@
 import MenuLayout from "../../layouts/MenuLayout.astro";
 import ProductGrid from "../../components/astro/ProductGrid.astro";
 import CategoryTabs from "../../components/astro/CategoryTabs.astro";
-import type { Product } from "../../types/menu";
 import configData from "../../content/config.json";
-import sorbetesData from "../../content/menu/sorbetes.json";
+import { getProductsByCategoryFromCollection } from "../../lib/utils/content-helpers";
 
-const products: Product[] = sorbetesData.filter(
-    (p) => p.available,
-) as Product[];
+const products = await getProductsByCategoryFromCollection('sorbetes');
 ---
 
 <MenuLayout title={`Sorbetes - ${configData.store.name}`}>

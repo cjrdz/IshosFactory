@@ -1,19 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProductGrid from "../components/astro/ProductGrid.astro";
-import type { Product } from "../types/menu";
 import configData from "../content/config.json";
+import { getFeaturedProductsFromCollection } from "../lib/utils/content-helpers";
 
 // Get featured products
-import gelatosData from "../content/menu/gelatos.json";
-import sorbetesData from "../content/menu/sorbetes.json";
-
-const featuredProducts: Product[] = [
-    ...(gelatosData as Product[]),
-    ...(sorbetesData as Product[]),
-]
-    .filter((p) => p.available && p.featured)
-    .slice(0, 6);
+const featuredProducts = (await getFeaturedProductsFromCollection()).slice(0, 6);
 ---
 
 <Layout title={`${configData.store.name} - El Salvador`}>

@@ -1,42 +1,33 @@
 ---
+import { getCollection } from 'astro:content';
 import MenuLayout from "../../../layouts/MenuLayout.astro";
 import CategoryTabs from "../../../components/astro/CategoryTabs.astro";
 import ProductDetail from "../../../components/svelte/ProductDetail.svelte";
 import Toast from "../../../components/svelte/Toast.svelte";
-import type { Product } from "../../../types/menu";
 import configData from "../../../content/config.json";
-
-// Import all product data
-import gelatosData from "../../../content/menu/gelatos.json";
-import sorbetesData from "../../../content/menu/sorbetes.json";
-import especialesData from "../../../content/menu/especiales.json";
-import extrasData from "../../../content/menu/extras.json";
+import { entryToProduct } from "../../../lib/utils/content-helpers";
 
 // Generate static paths for all products
 export async function getStaticPaths() {
-    const allProducts: Product[] = [
-        ...(gelatosData as Product[]),
-        ...(sorbetesData as Product[]),
-        ...(especialesData as Product[]),
-        ...(extrasData as Product[]),
-    ];
-
-    return allProducts.map((product) => ({
-        params: { id: product.id },
+    const entries = await getCollection('menu');
+    
+    return entries.map((entry) => ({
+        params: { id: entry.data.id },
     }));
 }
 
-const allProducts: Product[] = [
-    ...(gelatosData as Product[]),
-    ...(sorbetesData as Product[]),
-    ...(especialesData as Product[]),
-    ...(extrasData as Product[]),
-];
-
+const entries = await getCollection('menu');
 const { id } = Astro.params;
-const product = allProducts.find((p) => p.id === id);
 
-if (!product) {
+const entry = entries.find((e) => e.data.id === id);
+
+if (!entry) {
+    return Astro.redirect("/menu");
+}
+
+const product = entryToProduct(entry);
+
+if (!product.available) {
     return Astro.redirect("/menu");
 }
 

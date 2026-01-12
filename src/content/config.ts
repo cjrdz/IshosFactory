@@ -20,8 +20,8 @@ const productSchema = z.object({
 });
 
 const menuCollection = defineCollection({
-  type: 'data',
-  schema: z.array(productSchema),
+  type: 'content', // Changed from 'data' to 'content' for markdown files
+  schema: productSchema,
 });
 
 export const collections = {

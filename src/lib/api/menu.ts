@@ -1,38 +1,37 @@
 // Menu data fetching helpers
 
+import { getCollection } from 'astro:content';
 import type { Product, Category, CategoryData } from '../../types/menu';
 import type { StoreConfig } from '../../types/config';
-
-// Import menu data from content collections
-import gelatosData from '../../content/menu/gelatos.json';
-import sorbetesData from '../../content/menu/sorbetes.json';
-import especialesData from '../../content/menu/especiales.json';
-import extrasData from '../../content/menu/extras.json';
 import configData from '../../content/config.json';
-
-// Combine all products
-const allProducts: Product[] = [
-  ...(gelatosData as Product[]),
-  ...(sorbetesData as Product[]),
-  ...(especialesData as Product[]),
-  ...(extrasData as Product[]),
-];
+import { entryToProduct } from '../utils/content-helpers';
 
 export async function getAllProducts(): Promise<Product[]> {
-  return allProducts.filter((p) => p.available);
+  const entries = await getCollection('menu');
+  return entries.map(entryToProduct).filter((p) => p.available);
 }
 
 export async function getProductsByCategory(category: Category): Promise<Product[]> {
-  return allProducts.filter((p) => p.available && p.category === category);
+  const entries = await getCollection('menu', ({ data }) => {
+    return data.category === category;
+  });
+  return entries.map(entryToProduct).filter((p) => p.available);
 }
 
 export async function getFeaturedProducts(): Promise<Product[]> {
-  return allProducts.filter((p) => p.available && p.featured);
+  const entries = await getCollection('menu', ({ data }) => {
+    return data.featured === true;
+  });
+  return entries.map(entryToProduct).filter((p) => p.available);
 }
 
 export async function getProductById(id: string): Promise<Product | null> {
-  const product = allProducts.find((p) => p.id === id);
-  return product && product.available ? product : null;
+  const entries = await getCollection('menu', ({ data }) => {
+    return data.id === id;
+  });
+  if (entries.length === 0) return null;
+  const product = entryToProduct(entries[0]);
+  return product.available ? product : null;
 }
 
 export async function getMenuConfig(): Promise<StoreConfig> {
@@ -40,6 +39,7 @@ export async function getMenuConfig(): Promise<StoreConfig> {
 }
 
 export async function getCategories(): Promise<CategoryData[]> {
+  const allProducts = await getAllProducts();
   const categories: Record<Category, { name: string; description: string }> = {
     gelatos: {
       name: 'Gelatos',
@@ -63,6 +63,6 @@ export async function getCategories(): Promise<CategoryData[]> {
     id: id as Category,
     name: info.name,
     description: info.description,
-    products: allProducts.filter((p) => p.category === id && p.available),
+    products: allProducts.filter((p) => p.category === id),
   }));
 }
