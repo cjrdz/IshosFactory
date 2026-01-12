@@ -1,0 +1,13 @@
+{
+  "storeName": "Isho's Gelatos & Sorbetes",
+  "storeDescription": "Helados artesanales hechos con amor en El Salvador",
+  "currency": "USD",
+  "currencySymbol": "$",
+  "whatsappNumber": "50312345678",
+  "whatsappMessage": "Hola! Me gustaría hacer un pedido:",
+  "taxRate": 0.13,
+  "minOrderAmount": 5.00,
+  "deliveryAvailable": true,
+  "pickupAvailable": true
+}
+

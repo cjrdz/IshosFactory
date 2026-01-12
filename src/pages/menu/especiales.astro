@@ -1,0 +1,24 @@
+---
+import MenuLayout from '../../layouts/MenuLayout.astro';
+import ProductGrid from '../../components/astro/ProductGrid.astro';
+import CategoryTabs from '../../components/astro/CategoryTabs.astro';
+import type { Product } from '../../types/menu';
+import configData from '../../content/config.json';
+import especialesData from '../../data/menu/especiales.json';
+
+const products: Product[] = especialesData.filter((p) => p.available);
+---
+
+<MenuLayout title={`Especiales - ${configData.storeName}`}>
+  <div class="mb-8">
+    <h1 class="text-4xl font-bold mb-4">Especiales</h1>
+    <p class="text-lg text-base-content/70">
+      Productos especiales y de temporada
+    </p>
+  </div>
+
+  <CategoryTabs currentCategory="especiales" />
+
+  <ProductGrid products={products} currencySymbol={configData.currencySymbol} />
+</MenuLayout>
+

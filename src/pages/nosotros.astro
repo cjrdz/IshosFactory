@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import configData from '../content/config.json';
+import HomeCard from "../components/astro/HomeCard.astro";
+---
+
+<Layout title={`Nosotros - ${configData.storeName}`}>
+<HomeCard/>
+</Layout>
+

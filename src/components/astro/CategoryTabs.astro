@@ -1,0 +1,31 @@
+---
+import type { Category } from '../../types/menu';
+
+interface Props {
+  currentCategory: Category | 'all';
+  basePath?: string;
+}
+
+const { currentCategory, basePath = '/menu' } = Astro.props;
+
+const categories: Array<{ id: Category | 'all'; label: string; href: string }> = [
+  { id: 'all', label: 'Todos', href: `${basePath}` },
+  { id: 'gelatos', label: 'Gelatos', href: `${basePath}/gelatos` },
+  { id: 'sorbetes', label: 'Sorbetes', href: `${basePath}/sorbetes` },
+  { id: 'especiales', label: 'Especiales', href: `${basePath}/especiales` },
+  { id: 'extras', label: 'Extras', href: `${basePath}/extras` },
+];
+---
+
+<div class="tabs tabs-boxed justify-center mb-8">
+  {categories.map((category) => (
+    <a
+      href={category.href}
+      class={`tab ${currentCategory === category.id ? 'tab-active' : ''}`}
+    >
+      {category.label}
+    </a>
+  ))}
+</div>
+
+

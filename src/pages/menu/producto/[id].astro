@@ -1,0 +1,63 @@
+---
+import MenuLayout from '../../../layouts/MenuLayout.astro';
+import CategoryTabs from '../../../components/astro/CategoryTabs.astro';
+import ProductDetail from '../../../components/svelte/ProductDetail.svelte';
+import Toast from '../../../components/svelte/Toast.svelte';
+import type { Product } from '../../../types/menu';
+import configData from '../../../content/config.json';
+
+// Import all product data
+import gelatosData from '../../../data/menu/gelatos.json';
+import sorbetesData from '../../../data/menu/sorbetes.json';
+import especialesData from '../../../data/menu/especiales.json';
+import extrasData from '../../../data/menu/extras.json';
+
+// Generate static paths for all products
+export async function getStaticPaths() {
+  const allProducts: Product[] = [
+    ...gelatosData,
+    ...sorbetesData,
+    ...especialesData,
+    ...extrasData,
+  ];
+
+  return allProducts.map((product) => ({
+    params: { id: product.id },
+  }));
+}
+
+const allProducts: Product[] = [
+  ...gelatosData,
+  ...sorbetesData,
+  ...especialesData,
+  ...extrasData,
+];
+
+const { id } = Astro.params;
+const product = allProducts.find((p) => p.id === id);
+
+if (!product) {
+  return Astro.redirect('/menu');
+}
+
+// Determine category for tabs
+const category = product.category;
+---
+
+<MenuLayout title={`${product.name} - ${configData.storeName}`}>
+  <div class="mb-8">
+    <a href="/menu" class="btn btn-ghost btn-sm mb-4">
+      ← Volver al Menú
+    </a>
+    <CategoryTabs currentCategory={category} />
+  </div>
+
+  <ProductDetail
+    product={product}
+    currencySymbol={configData.currencySymbol}
+    client:load
+  />
+
+  <Toast client:load />
+</MenuLayout>
+

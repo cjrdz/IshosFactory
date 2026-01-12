@@ -1,10 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import HomeCard from "../components/astro/HomeCard.astro";
+import ProductGrid from "../components/astro/ProductGrid.astro";
+import type { Product } from "../types/menu";
+import configData from "../content/config.json";
+
+// Get featured products
+import gelatosData from "../data/menu/gelatos.json";
+import sorbetesData from "../data/menu/sorbetes.json";
+
+const featuredProducts: Product[] = [
+  ...(gelatosData as Product[]),
+  ...(sorbetesData as Product[]),
+].filter((p) => p.available && p.featured).slice(0, 6);
 ---
 
-<Layout title="Isho's Gelatos & Sorbetes - El Salvador">
-    <div class="flex justify-center items-center">
-        <HomeCard />
-    </div>
+<Layout title={`${configData.storeName} - El Salvador`}>
+
+    {featuredProducts.length > 0 && (
+        <section class="container mx-auto px-4 py-16">
+            <h2 class="text-3xl font-bold text-center mb-8">Productos Destacados</h2>
+            <ProductGrid products={featuredProducts} currencySymbol={configData.currencySymbol} />
+            <div class="text-center mt-8">
+                <a href="/menu" class="btn btn-primary btn-lg">
+                    Ver Todo el Menú
+                </a>
+            </div>
+        </section>
+    )}
+
 </Layout>

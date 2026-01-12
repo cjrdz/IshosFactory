@@ -1,0 +1,22 @@
+[
+  {
+    "id": "cajita-mix-chocobananos",
+    "name": "Cajita Mix & Chocobananos",
+    "description": "Combinación especial de sabores en cajita",
+    "price": 6.00,
+    "image": "/images/products/cajitamix&chocobananos.png",
+    "category": "especiales",
+    "available": true,
+    "featured": true
+  },
+  {
+    "id": "para-llevar",
+    "name": "Para Llevar",
+    "description": "Productos especiales para llevar",
+    "price": 8.00,
+    "image": "/images/products/parallevar.png",
+    "category": "especiales",
+    "available": true,
+    "featured": false
+  }
+]

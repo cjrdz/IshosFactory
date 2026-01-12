@@ -1,0 +1,43 @@
+[
+  {
+    "id": "conos-barquillos",
+    "name": "Conos & Barquillos",
+    "description": "Conos y barquillos de galleta crujientes",
+    "price": 0.50,
+    "image": "/images/products/conos&barquillos.png",
+    "category": "extras",
+    "available": true,
+    "featured": false
+  },
+  {
+    "id": "bowls",
+    "name": "Bowls",
+    "description": "Bowls para servir helado",
+    "price": 1.00,
+    "image": "/images/products/bowls.png",
+    "category": "extras",
+    "available": true,
+    "featured": false
+  },
+  {
+    "id": "vasos-rarrinas",
+    "name": "Vasos & Rarrinas",
+    "description": "Vasos y rarrinas para servir",
+    "price": 0.75,
+    "image": "/images/products/vasos&rarrinas.png",
+    "category": "extras",
+    "available": true,
+    "featured": false
+  },
+  {
+    "id": "toppings-jaleas-extras",
+    "name": "Toppings, Jaleas & Extras",
+    "description": "Variedad de toppings, jaleas y extras para personalizar tu helado",
+    "price": 1.50,
+    "image": "/images/products/toppings-jaleas-extras.png",
+    "category": "extras",
+    "available": true,
+    "featured": false,
+    "flavors": ["Chocolate", "Caramelo", "Frutas", "Nueces", "Coco"]
+  }
+]

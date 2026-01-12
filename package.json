@@ -15,6 +15,7 @@
     "astro": "^5.16.8",
     "astro-heroicons": "2.1.5-1",
     "daisyui": "^5.5.14",
+    "nanostores": "^0.10.3",
     "svelte": "^5.46.1",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"

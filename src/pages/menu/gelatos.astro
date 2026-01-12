@@ -1,0 +1,24 @@
+---
+import MenuLayout from '../../layouts/MenuLayout.astro';
+import ProductGrid from '../../components/astro/ProductGrid.astro';
+import CategoryTabs from '../../components/astro/CategoryTabs.astro';
+import type { Product } from '../../types/menu';
+import configData from '../../content/config.json';
+import gelatosData from '../../data/menu/gelatos.json';
+
+const products: Product[] = gelatosData.filter((p) => p.available);
+---
+
+<MenuLayout title={`Gelatos - ${configData.storeName}`}>
+  <div class="mb-8">
+    <h1 class="text-4xl font-bold mb-4">Gelatos</h1>
+    <p class="text-lg text-base-content/70">
+      Nuestros gelatos artesanales cremosos y deliciosos
+    </p>
+  </div>
+
+  <CategoryTabs currentCategory="gelatos" />
+
+  <ProductGrid products={products} currencySymbol={configData.currencySymbol} />
+</MenuLayout>
+

@@ -1,0 +1,26 @@
+---
+interface Props {
+  message?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const {
+  message = 'Tu carrito está vacío',
+  ctaText = 'Ver Menú',
+  ctaLink = '/menu',
+} = Astro.props;
+---
+
+<div class="flex flex-col items-center justify-center py-12 text-center">
+  <div class="text-6xl mb-4">🛒</div>
+  <h2 class="text-2xl font-bold mb-2">{message}</h2>
+  <p class="text-base-content/70 mb-6">
+    Agrega productos deliciosos a tu carrito para comenzar tu pedido
+  </p>
+  <a href={ctaLink} class="btn btn-primary">
+    {ctaText}
+  </a>
+</div>
+
+

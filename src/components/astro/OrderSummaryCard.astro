@@ -1,0 +1,47 @@
+---
+import type { CartSummary } from '../../types/cart';
+import { formatPrice } from '../../lib/utils/formatters';
+
+interface Props {
+  summary: CartSummary;
+  currencySymbol?: string;
+  taxRate?: number;
+  showTax?: boolean;
+}
+
+const {
+  summary,
+  currencySymbol = '$',
+  taxRate = 0.13,
+  showTax = true,
+} = Astro.props;
+
+const tax = showTax ? summary.subtotal * taxRate : 0;
+const total = summary.subtotal + tax;
+---
+
+<div class="card bg-base-100 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title">Resumen del Pedido</h2>
+    <div class="divider"></div>
+    <div class="space-y-2">
+      <div class="flex justify-between">
+        <span>Subtotal ({summary.itemCount} {summary.itemCount === 1 ? 'artículo' : 'artículos'})</span>
+        <span class="font-semibold">{formatPrice(summary.subtotal, 'USD', currencySymbol)}</span>
+      </div>
+      {showTax && tax > 0 && (
+        <div class="flex justify-between">
+          <span>IVA (13%)</span>
+          <span class="font-semibold">{formatPrice(tax, 'USD', currencySymbol)}</span>
+        </div>
+      )}
+      <div class="divider"></div>
+      <div class="flex justify-between text-lg font-bold">
+        <span>Total</span>
+        <span class="text-primary">{formatPrice(total, 'USD', currencySymbol)}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+

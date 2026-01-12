@@ -1,0 +1,76 @@
+---
+import OrderLayout from '../../layouts/OrderLayout.astro';
+import WhatsAppButton from '../../components/svelte/WhatsAppButton.svelte';
+import { cart } from '../../lib/stores/cart';
+import configData from '../../content/config.json';
+
+const url = Astro.url;
+const name = url.searchParams.get('name') || '';
+const phone = url.searchParams.get('phone') || '';
+const orderType = (url.searchParams.get('orderType') || 'pickup') as 'pickup' | 'delivery';
+const address = url.searchParams.get('address') || '';
+const notes = url.searchParams.get('notes') || '';
+
+// This will be populated client-side from the cart store
+const cartItems = [];
+const total = 0;
+---
+
+<OrderLayout title={`Confirmación - ${configData.storeName}`}>
+  <div class="max-w-2xl mx-auto text-center">
+    <div class="mb-8">
+      <div class="text-6xl mb-4">✅</div>
+      <h1 class="text-4xl font-bold mb-4">¡Pedido Confirmado!</h1>
+      <p class="text-lg text-base-content/70">
+        Gracias por tu pedido, {name}. Hemos recibido tu solicitud.
+      </p>
+    </div>
+
+    <div class="bg-base-100 rounded-lg shadow-lg p-6 mb-6">
+      <h2 class="text-2xl font-bold mb-4">Resumen del Pedido</h2>
+      <div class="text-left space-y-2">
+        <p><strong>Nombre:</strong> {name}</p>
+        <p><strong>Teléfono:</strong> {phone}</p>
+        <p><strong>Tipo:</strong> {orderType === 'pickup' ? 'Recoger en tienda' : 'Entrega a domicilio'}</p>
+        {orderType === 'delivery' && address && (
+          <p><strong>Dirección:</strong> {address}</p>
+        )}
+        {notes && (
+          <p><strong>Notas:</strong> {notes}</p>
+        )}
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <p class="mb-4">
+        Para completar tu pedido, envía la información por WhatsApp:
+      </p>
+      <div id="whatsapp-button-container">
+        <!-- WhatsApp button will be rendered client-side -->
+      </div>
+    </div>
+
+    <div class="flex gap-4 justify-center">
+      <a href="/menu" class="btn btn-outline">
+        Ver Más Productos
+      </a>
+      <a href="/" class="btn btn-primary">
+        Volver al Inicio
+      </a>
+    </div>
+  </div>
+
+  <WhatsAppButton
+    items={cartItems}
+    total={total}
+    customerName={name}
+    phone={phone}
+    orderType={orderType}
+    address={address || undefined}
+    notes={notes || undefined}
+    whatsappNumber={configData.whatsappNumber}
+    currencySymbol={configData.currencySymbol}
+    client:load
+  />
+</OrderLayout>
+

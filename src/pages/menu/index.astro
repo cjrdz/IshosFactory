@@ -1,0 +1,35 @@
+---
+import MenuLayout from '../../layouts/MenuLayout.astro';
+import ProductGrid from '../../components/astro/ProductGrid.astro';
+import CategoryTabs from '../../components/astro/CategoryTabs.astro';
+import type { Product } from '../../types/menu';
+import configData from '../../content/config.json';
+
+// In a real app, you'd fetch from content collections
+// For now, we'll combine all menu items
+import gelatosData from '../../data/menu/gelatos.json';
+import sorbetesData from '../../data/menu/sorbetes.json';
+import especialesData from '../../data/menu/especiales.json';
+import extrasData from '../../data/menu/extras.json';
+
+const allProducts: Product[] = [
+  ...gelatosData,
+  ...sorbetesData,
+  ...especialesData,
+  ...extrasData,
+].filter((p) => p.available);
+---
+
+<MenuLayout title={`Menú - ${configData.storeName}`}>
+  <div class="mb-8">
+    <h1 class="text-4xl font-bold mb-4">Nuestro Menú</h1>
+    <p class="text-lg text-base-content/70">
+      {configData.storeDescription}
+    </p>
+  </div>
+
+  <CategoryTabs currentCategory="all" />
+
+  <ProductGrid products={allProducts} currencySymbol={configData.currencySymbol} />
+</MenuLayout>
+
