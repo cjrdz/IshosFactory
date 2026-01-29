@@ -1,14 +1,8 @@
 {
-  "media": {
-    "root": "public/images",
-    "public": "public"
-  },
-  "content": {
-    "root": "src/content"
-  },
-  "code": {
-    "root": ""
-  },
-  "themeConfig": [],
-  "arrangement": []
+  "media": "public/images",
+  "content": "src/content",
+  "code": "",
+  "arrangement": [],
+  "public": "public",
+  "configs": []
 }
